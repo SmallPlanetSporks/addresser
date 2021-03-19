@@ -719,29 +719,36 @@ describe('#parseAddress', function() {
         expect(result.zipCode).to.equal("M3K5K9");
         expect(result.hasOwnProperty("zipCodePlusFour")).to.equal(false);
     });
-});
-
-describe('#randomCity', function() {
-    it('should provide a random city', function() {
-        for (var i = 0; i < 20; i++) { 
-            var result = addresser.randomCity();
-            expect(result.hasOwnProperty("city")).to.equal(true);
-            expect(result['city'].length).to.be.above(1);
-            expect(result.hasOwnProperty("state")).to.equal(true);
-            expect(result['state'].length).to.equal(2);
-        }
+    
+    it('should parse this 1', function() {
+        var result = addresser.parseAddress("4349 North Neva Avenue, 1B, Norridge, IL 60706");
+        expect(result.streetNumber).to.equal("4349");
+        expect(result.streetName).to.equal("North Neva");
+        expect(result.streetSuffix).to.equal("Ave");
+        expect(result.hasOwnProperty("streetDirection")).to.equal(false);
+        expect(result.addressLine1).to.equal("4349 North Neva Ave");
+        expect(result.hasOwnProperty("addressLine2")).to.equal(true);
+        expect(result.addressLine2).to.equal("1B");
+        expect(result.placeName).to.equal("Norridge");
+        expect(result.stateAbbreviation).to.equal("IL");
+        expect(result.stateName).to.equal("Illinois");
+        expect(result.zipCode).to.equal("60706");
+        expect(result.hasOwnProperty("zipCodePlusFour")).to.equal(false);
     });
-});
-
-describe('##cities', function() {
-    it('should provide a full list of cities', function() {
-        var result = addresser.cities();
-        expect(result['WV'].includes('War')).to.be.true;
-        expect(result['ND'].includes('Center')).to.be.true;
-        expect(result['LA'].includes('Bentley')).to.be.true;
-        expect(result['NY'].includes('Cleveland')).to.be.true;
-        expect(result['SC'].includes('Marion')).to.be.true;
-        expect(result['TX'].length).to.be.greaterThan(300);
-        expect(result['TX'].includes('ThisCityCannot143234234234234PossiblyExist')).to.be.false;
+    
+    it('should parse this 1', function() {
+        var result = addresser.parseAddress("4349 North Neva Avenue, Apt 1B, Norridge, IL 60706");
+        expect(result.streetNumber).to.equal("4349");
+        expect(result.streetName).to.equal("North Neva");
+        expect(result.streetSuffix).to.equal("Ave");
+        expect(result.hasOwnProperty("streetDirection")).to.equal(false);
+        expect(result.addressLine1).to.equal("4349 North Neva Ave");
+        expect(result.hasOwnProperty("addressLine2")).to.equal(true);
+        expect(result.addressLine2).to.equal("Apt 1B");
+        expect(result.placeName).to.equal("Norridge");
+        expect(result.stateAbbreviation).to.equal("IL");
+        expect(result.stateName).to.equal("Illinois");
+        expect(result.zipCode).to.equal("60706");
+        expect(result.hasOwnProperty("zipCodePlusFour")).to.equal(false);
     });
 });

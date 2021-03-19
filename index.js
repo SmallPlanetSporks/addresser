@@ -1,8 +1,6 @@
 var allStates = require('./data/states.json');
 var usStreetTypes = require('./data/us-street-types.json');
 var allCities = require('./data/cities.json');
-var usStates = require('./data/us-states.json');
-var usCities = require('./data/us-cities.json');
 
 
 
@@ -320,17 +318,5 @@ module.exports = {
     }
       
     return result;
-  },
-
-  randomCity: function() {
-    var randomState = randomProperty(usCities);
-    var randomStateData = usCities[randomState];
-    var randomCityElementId = Math.floor(Math.random() * randomStateData.length);
-    var randomCity = randomStateData[randomCityElementId];
-    return { city: randomCity, state: randomState};
-  },
-
-  cities: function() {
-    return(usCities);
   }
 };
